@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<link rel="shortcut icon"
+		href="https://www.unitins.br/Uniperfil/Upload/da2c288f8dc21c685081ef337c37f3b4.ico" />
+	<title>Educ@ - Topicos I</title>
+</h:head>
+
+<h:body>
+	<div class="container-fluid">
+		<div class="centralizarItem" style="height: 90px;">
+			<a href="menu.xhtml"> <img class="img-responsive" width="170px;"
+				src="https://www.unitins.br/Uniperfil/Upload/191645b4d34e3181e0b8ee840ab42a40.png" />
+			</a>
+		</div>
+
+		<nav class="row navbar navbar-light"
+			style="height: 60px; background-color: #094AB2;">
+			<span class="navbar-text" style="font-size: 24px; color: #FFFFFF;">
+				Consulta de Usuário</span>
+		</nav>
+	</div>
+
+	<div class="container">
+		<h:form id="formDataTable" styleClass="form-horizontal">
+		<h:messages id="messages" style="color:red" glogalOnly="false" />
+			<div class="md-3">
+				<h:dataTable value="#{consultaController.listaUsuario}" var="obj"
+					styleClass="table table-striped table-hover">
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+						<h:outputLabel value="#{obj.id}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+						<h:outputLabel value="#{obj.nome}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Cpf</f:facet>
+						<h:outputLabel value="#{obj.cpf}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Data Nascimento</f:facet>
+						<h:outputLabel value="#{obj.dataNascimento}">
+							<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
+						</h:outputLabel>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Login</f:facet>
+						<h:outputLabel value="#{obj.login}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Perfil</f:facet>
+						<h:outputLabel value="#{obj.perfil.label}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Ações</f:facet>
+						<h:commandButton value="Alterar" styleClass="btn btn-warning"
+							actionListener="#{consultaController.alterar(obj)}" />
+						<h:commandButton value="Remover" styleClass="btn btn-danger"
+							actionListener="#{consultaController.excluir(obj)}" />
+					</h:column>
+				</h:dataTable>
+			</div>
+
+			<hr />
+
+			<div class="row">
+				<div class="col-md-3 mb-3">
+					<h:commandButton value="Novo"
+						actionListener="#{consultaController.novo}"
+						styleClass="col-md-2 mb-3 btn btn-default form-control">
+						<f:ajax execute="@form" render="@form" />
+					</h:commandButton>
+				</div>
+				<div class="col-md-3 mb-3">
+					<h:commandButton value="Voltar"
+						actionListener="#{consultaController.voltar}"
+						styleClass="col-md-2 mb-3 btn btn-default form-control" />
+				</div>
+			</div>
+		</h:form>
+	</div>
+
+</h:body>
+</html>

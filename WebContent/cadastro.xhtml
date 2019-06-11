@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<link rel="shortcut icon"
+		href="https://www.unitins.br/Uniperfil/Upload/da2c288f8dc21c685081ef337c37f3b4.ico" />
+	<title>Educ@ - Topicos I</title>
+</h:head>
+
+<h:body>
+	<div class="container-fluid">
+		<div class="centralizarItem" style="height: 90px;">
+			<a href="cadastro.xhtml"> <img class="img-responsive" width="170px;"
+				src="https://www.unitins.br/Uniperfil/Upload/191645b4d34e3181e0b8ee840ab42a40.png" />
+			</a>
+		</div>
+
+		<nav class="row navbar navbar-light"
+			style="height: 60px; background-color: #094AB2;">
+			<span class="navbar-text" style="font-size: 24px; color: #FFFFFF;">
+				Cadastro de Usuário</span>
+		</nav>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-xs-updated">
+				<h:form styleClass="form-horizontal">
+					<h:messages id="messages" style="color:red" globalOnly="false" />
+
+					<div class="mb-3">
+						<h:outputLabel value="Nome:" styleClass="control-label" />
+						<h:inputText id="itNome" value="#{cadastroController.usuario.nome}"
+							styleClass="form-control">
+						</h:inputText>
+						<h:message for="itNome" style="color:red" />
+					</div>
+					
+					<div class="mb-3">
+						<h:outputLabel value="Cpf:" styleClass="control-label" />
+						<h:inputText id="itCpf" value="#{cadastroController.usuario.cpf}"
+							styleClass="form-control">
+						</h:inputText>
+						<h:message for="itCpf" style="color:red" />
+					</div>
+					
+					<div class="mb-3">
+						<h:outputLabel value="Data de Nascimento:"
+							styleClass="control-label" />
+						<h:inputText value="#{cadastroController.usuario.dataNascimento}"
+							styleClass="form-control"
+							converterMessage="Erro de conversao de data">
+							<f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+						</h:inputText>
+					</div>
+					
+					<div class="mb-3">
+						<h:outputLabel value="Login:" styleClass="control-label" />
+						<h:inputText value="#{cadastroController.usuario.login}"
+							styleClass="form-control" />
+					</div>
+					
+					<div class="mb-3">
+						<h:outputLabel value="Senha:" styleClass="control-label" />
+						<h:inputText value="#{cadastroController.usuario.senha}"
+							styleClass="form-control" />
+					</div>
+					
+					<div class="mb-3">
+						<h:outputLabel value="Perfil de Usuário:"
+							styleClass="control-label" />
+						<h:selectOneListbox value="#{cadastroController.usuario.perfil}"
+							styleClass="form-control" size="1" style="height: 34px;">
+
+							<f:selectItem itemLabel="Selecione ..." />
+							<f:selectItems value="#{cadastroController.listaPerfil}"
+								var="perfil" itemLabel="#{perfil.label}" itemValue="#{perfil}" />
+						</h:selectOneListbox>
+					</div>
+
+					<hr />
+
+					<div class="row">
+						<div class="col-md-3 mb-3">
+							<h:commandButton value="Incluir"
+								disabled="#{usuarioController.usuario.id != null}"
+								actionListener="#{cadastroController.incluir}"
+								styleClass="col-md-2 mb-3 btn btn-default form-control">
+								<f:ajax execute="@form" render="@form" />
+							</h:commandButton>
+						</div>
+						<div class="col-md-3 mb-3">
+							<h:commandButton value="Alterar"
+								disabled="#{usuarioController.usuario.id == null}"
+								actionListener="#{cadastroController.alterar}"
+								styleClass="btn btn-default form-control">
+								<f:ajax execute="@form" render="@form" />
+							</h:commandButton>
+						</div>
+						<div class="col-md-3 mb-3">
+							<h:commandButton value="Limpar"
+								actionListener="#{cadastroController.limpar}"
+								styleClass="col-md-2 mb-3 btn btn-default form-control" />
+						</div>
+						<div class="col-md-3 mb-3">
+							<h:commandButton value="Voltar"
+								actionListener="#{cadastroController.voltar}"
+								styleClass="col-md-2 mb-3 btn btn-default form-control" />
+						</div>
+					</div>
+
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+</h:body>
+</html>
