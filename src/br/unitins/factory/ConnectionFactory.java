@@ -18,7 +18,7 @@ public class ConnectionFactory {
 			Class.forName("org.postgresql.Driver");
 			// estabelecendo um conexao com o banco
 			conn = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/topicos1_final",
-															"postgres", "Tl784512");
+															"topicos1", "123456");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Falha ao registrar o Driver de banco");
 			e.printStackTrace();
